@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: vault
 
 resources:
-  - ../../../common/hashicorp-vault
   - ../../../common/external-secrets

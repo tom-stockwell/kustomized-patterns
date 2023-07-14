@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: external-secrets
+
+resources:
+  - https://github.com/redhat-cop/gitops-catalog//external-secrets-operator/instance/overlays/default?ref=main
+  - clustersecretstore.yml
+  - clusterrolebinding.yml
+  - secret.yml
