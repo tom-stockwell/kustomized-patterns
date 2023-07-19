@@ -1,0 +1,3 @@
+external_secrets_ns: external-secrets
+external_secrets_sa: cluster-external-secrets
+external_secrets_secret: cluster-external-secrets
