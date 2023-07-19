@@ -3,4 +3,5 @@ kind: Kustomization
 
 resources:
   - ../../../common/hashicorp-vault
-  - external-secrets
+  - external-secrets/operator
+  - external-secrets/instance
