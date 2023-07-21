@@ -5,3 +5,5 @@ resources:
   - ../../../common/hashicorp-vault
   - ../../../common/external-secrets/operator
   - external-secrets/instance
+  - ../../../common/advanced-cluster-management/operator
+  - ../../../common/advanced-cluster-management/instance
