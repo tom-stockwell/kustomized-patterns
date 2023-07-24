@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-config
+spec:
+  generators:
+    - git:
+        repoURL: &url https://github.com/tom-stockwell/validated-patterns-example.git
+        revision: &rev HEAD
+        directories:
+          - path: clusters/hub/*
+  template:
+    metadata:
+      name: '{{ path.basename }}'
+    spec:
+      project: default
+      source:
+        repoURL: *url
+        targetRevision: *rev
+        path: '{{ path }}'
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
+        retry:
+          limit: 5
