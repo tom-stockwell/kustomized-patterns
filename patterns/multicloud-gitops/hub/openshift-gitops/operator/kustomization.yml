@@ -3,6 +3,3 @@ kind: Kustomization
 
 resources:
   - https://github.com/redhat-cop/gitops-catalog//openshift-gitops-operator/operator/overlays/gitops-1.9
-
-patches:
-  - path: subscription.patch.yml
