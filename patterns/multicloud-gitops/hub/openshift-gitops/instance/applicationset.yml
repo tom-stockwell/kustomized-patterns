@@ -28,3 +28,5 @@ spec:
           - ApplyOutOfSyncOnly=true
         retry:
           limit: 5
+  syncPolicy:
+    preserveResourcesOnDeletion: true
