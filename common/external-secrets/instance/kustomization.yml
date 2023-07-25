@@ -7,3 +7,11 @@ resources:
   - clustersecretstore.yml
   - clusterrolebinding.yml
   - secret.yml
+
+patches:
+  - path: patches/skip-dry-run-annotation.patch.yml
+    target:
+      kind: OperatorConfig
+  - path: patches/skip-dry-run-annotation.patch.yml
+    target:
+      kind: ClusterSecretStore
