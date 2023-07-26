@@ -23,7 +23,7 @@ spec:
           object-templates:
             - complianceType: mustonlyhave
               objectDefinition:
-                kind: ConfigMap
+                kind: Secret
                 apiVersion: v1
                 metadata:
                   name: hub-ca.crt
