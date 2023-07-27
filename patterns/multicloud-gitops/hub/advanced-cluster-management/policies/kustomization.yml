@@ -8,3 +8,4 @@ resources:
 - placementrule-managed-clusters.yml
 - policy-external-secrets.yml
 - policy-openshift-gitops.yml
+- policy-cluster-config-applicationset.yml

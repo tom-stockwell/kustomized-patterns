@@ -1,0 +1,79 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: cluster-config-applicationset
+  annotations:
+    policy.open-cluster-management.io/standards: NIST-CSF
+    policy.open-cluster-management.io/categories: PR.DS Data Security
+    policy.open-cluster-management.io/controls: PR.DS-1 Data-at-rest
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  remediationAction: enforce
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: cluster-config-applicationset-config
+        spec:
+          remediationAction: enforce
+          severity: medium
+          namespaceSelector:
+            include:
+              - default
+          object-templates:
+            - complianceType: mustonlyhave
+              objectDefinition:
+                # This is an auto-generated file. DO NOT EDIT
+                apiVersion: argoproj.io/v1alpha1
+                kind: ApplicationSet
+                metadata:
+                  name: cluster-config
+                  namespace: openshift-gitops
+                spec:
+                  generators:
+                    - git:
+                        repoURL: &url https://github.com/CHANGEME.git
+                        revision: &rev HEAD
+                        directories:
+                          - path: clusters/{{ fromClusterClaim "name" }}/*
+                  template:
+                    metadata:
+                      name: "{{ `{{ path.basename }}` }}"
+                    spec:
+                      project: default
+                      source:
+                        repoURL: *url
+                        targetRevision: *rev
+                        path: "{{ `{{ path }}` }}"
+                      destination:
+                        server: https://kubernetes.default.svc
+                      syncPolicy:
+                        automated:
+                          prune: true
+                          selfHeal: true
+                        syncOptions:
+                          - ApplyOutOfSyncOnly=true
+                        retry:
+                          limit: 5
+                  syncPolicy:
+                    preserveResourcesOnDeletion: true
+
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: cluster-config-applicationset
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+placementRef:
+  name: managed-clusters
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+  - name: cluster-config-applicationset
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
