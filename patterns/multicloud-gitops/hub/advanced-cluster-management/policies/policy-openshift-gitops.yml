@@ -10,6 +10,7 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
+  copyPolicyMetadata: false
   remediationAction: enforce
   disabled: false
   policy-templates:

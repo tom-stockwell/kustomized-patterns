@@ -11,6 +11,7 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   remediationAction: enforce
+  copyPolicyMetadata: false
   disabled: false
   policy-templates:
     - objectDefinition:
