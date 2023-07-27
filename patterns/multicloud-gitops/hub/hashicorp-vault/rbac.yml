@@ -2,14 +2,20 @@
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: vault-unsealer
+  name: vault-unsealer-local
 rules:
   - apiGroups: [""]
     resources: ["pods/exec"]
     verbs: ["get", "create"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: vault-unsealer-cluster
+rules:
   - apiGroups: [""]
     resources: ["secrets"]
-    verbs: ["get", "create"]
+    verbs: ["get", "watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -27,11 +33,37 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: vault-unsealer
+  name: vault-unsealer-local
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: vault-unsealer
+  name: vault-unsealer-local
+subjects:
+  - kind: ServiceAccount
+    name: vault-unsealer
+    namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: vault-unsealer-cluster
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: vault-unsealer-cluster
+subjects:
+  - kind: ServiceAccount
+    name: vault-unsealer
+    namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: vault-unsealer-managed-clusters
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: multicluster-engine:cluster-lifecycle:view-aggregate
 subjects:
   - kind: ServiceAccount
     name: vault-unsealer
