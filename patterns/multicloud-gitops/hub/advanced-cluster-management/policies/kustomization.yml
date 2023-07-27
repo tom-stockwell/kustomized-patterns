@@ -4,6 +4,7 @@ namespace: open-cluster-management-policies
 
 resources:
 - namespace.yml
-- external-secrets/placementbinding.yml
-- external-secrets/policy.yml
 - placementrule-all-openshift-clusters.yml
+- placementrule-managed-clusters.yml
+- policy-external-secrets.yml
+- policy-openshift-gitops.yml
