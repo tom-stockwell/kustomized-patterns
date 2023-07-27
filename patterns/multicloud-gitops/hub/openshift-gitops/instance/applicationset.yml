@@ -5,7 +5,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: &url https://github.com/tom-stockwell/validated-patterns-example.git
+        repoURL: &url https://github.com/CHANGEME.git
         revision: &rev HEAD
         directories:
           - path: clusters/hub/*
