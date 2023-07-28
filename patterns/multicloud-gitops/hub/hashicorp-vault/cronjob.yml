@@ -54,22 +54,24 @@ spec:
                     path: roles/vault_utils/defaults/main.yml
                   - key: tasks-main.yml
                     path: roles/vault_utils/tasks/main.yml
-                  - key: tasks-pre_check.yaml
+                  - key: pre_check.yaml
                     path: roles/vault_utils/tasks/pre_check.yaml
-                  - key: tasks-push_secrets.yaml
+                  - key: push_secrets.yaml
                     path: roles/vault_utils/tasks/push_secrets.yaml
-                  - key: tasks-vault_init.yaml
+                  - key: vault_init.yaml
                     path: roles/vault_utils/tasks/vault_init.yaml
-                  - key: tasks-vault_secrets_init.yaml
+                  - key: vault_secrets_init.yaml
                     path: roles/vault_utils/tasks/vault_secrets_init.yaml
-                  - key: tasks-vault_spokes_init.yaml
+                  - key: vault_spokes_init.yaml
                     path: roles/vault_utils/tasks/vault_spokes_init.yaml
-                  - key: tasks-vault_status.yaml
+                  - key: vault_status.yaml
                     path: roles/vault_utils/tasks/vault_status.yaml
-                  - key: tasks-vault_unseal.yaml
+                  - key: vault_unseal.yaml
                     path: roles/vault_utils/tasks/vault_unseal.yaml
-                  - key: plugins-vault_load_secrets.py
+                  - key: vault_load_secrets.py
                     path: plugins/modules/vault_load_secrets.py
-                  - key: inventory-localhost.yml
+                  - key: parse_acm_secrets.py
+                    path: plugins/filter/parse_acm_secrets.py
+                  - key: localhost.yml
                     path: inventory/host_vars/localhost.yml
           restartPolicy: Never

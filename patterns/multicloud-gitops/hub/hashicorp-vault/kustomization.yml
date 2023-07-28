@@ -15,12 +15,13 @@ configMapGenerator:
       - files/playbook.yml
       - defaults-main.yml=files/roles/vault_utils/defaults/main.yml
       - tasks-main.yml=files/roles/vault_utils/tasks/main.yml
-      - tasks-pre_check.yaml=files/roles/vault_utils/tasks/pre_check.yaml
-      - tasks-push_secrets.yaml=files/roles/vault_utils/tasks/push_secrets.yaml
-      - tasks-vault_init.yaml=files/roles/vault_utils/tasks/vault_init.yaml
-      - tasks-vault_secrets_init.yaml=files/roles/vault_utils/tasks/vault_secrets_init.yaml
-      - tasks-vault_spokes_init.yaml=files/roles/vault_utils/tasks/vault_spokes_init.yaml
-      - tasks-vault_status.yaml=files/roles/vault_utils/tasks/vault_status.yaml
-      - tasks-vault_unseal.yaml=files/roles/vault_utils/tasks/vault_unseal.yaml
-      - plugins-vault_load_secrets.py=files/plugins/modules/vault_load_secrets.py
-      - inventory-localhost.yml=files/inventory/host_vars/localhost.yml
+      - files/roles/vault_utils/tasks/pre_check.yaml
+      - files/roles/vault_utils/tasks/push_secrets.yaml
+      - files/roles/vault_utils/tasks/vault_init.yaml
+      - files/roles/vault_utils/tasks/vault_secrets_init.yaml
+      - files/roles/vault_utils/tasks/vault_spokes_init.yaml
+      - files/roles/vault_utils/tasks/vault_status.yaml
+      - files/roles/vault_utils/tasks/vault_unseal.yaml
+      - files/plugins/modules/vault_load_secrets.py
+      - files/plugins/filter/parse_acm_secrets.py
+      - files/inventory/host_vars/localhost.yml
